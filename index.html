@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mick — simple tools that work, no hype</title>
-<meta name="description" content="Free, private tools and plain-language guides for getting genuinely good at AI and life. Built in the open by Mick.">
+<title>Mick Hume — simple tools that work, no hype</title>
+<meta name="description" content="Free, private tools and plain-language guides for getting genuinely good at AI and life. Built in the open by Mick Hume.">
 <!--
   ANALYTICS PLACEHOLDER (cookieless, hub-only — the free tools stay no-tracking).
   Add ONE of these in <head> after you pick a provider (see SETUP.md):
@@ -14,78 +14,156 @@
 -->
 <style>
   :root{
-    --bg:#fbfbfa; --fg:#1a1a1a; --muted:#5a5a5a; --line:#e4e4e1;
-    --accent:#c8641e; --card:#ffffff; --chip:#f0efec;
-    color-scheme: light dark;
+    --green:#0f5a34; --green-deep:#0a3d24; --green-ink:#14261c;
+    --gold:#b8860b; --gold-bright:#caa53a; --gold-soft:#e8d9a8;
+    --paper:#f7f5ec; --card:#fffdf7; --ink:#182219; --muted:#5c6a5f;
+    --line:#e2ddcc; --line-soft:#eee9db;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,"SF Mono","Cascadia Code",Menlo,Consolas,monospace;
+    color-scheme:light dark;
   }
-  @media (prefers-color-scheme: dark){
-    :root{ --bg:#141416; --fg:#ececec; --muted:#a5a5a5; --line:#2c2c30; --accent:#ffb066; --card:#1c1c1f; --chip:#26262a; }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --green:#3fa06a; --green-deep:#0c3b23; --green-ink:#d7e6db;
+      --gold:#d7b552; --gold-bright:#e6c766; --gold-soft:#4a4324;
+      --paper:#0c1310; --card:#131c16; --ink:#e8efe8; --muted:#93a397;
+      --line:#243029; --line-soft:#1b2620;
+    }
+  }
+  :root[data-theme="light"]{
+    --green:#0f5a34; --green-deep:#0a3d24; --green-ink:#14261c; --gold:#b8860b; --gold-bright:#caa53a; --gold-soft:#e8d9a8;
+    --paper:#f7f5ec; --card:#fffdf7; --ink:#182219; --muted:#5c6a5f; --line:#e2ddcc; --line-soft:#eee9db;
+  }
+  :root[data-theme="dark"]{
+    --green:#3fa06a; --green-deep:#0c3b23; --green-ink:#d7e6db; --gold:#d7b552; --gold-bright:#e6c766; --gold-soft:#4a4324;
+    --paper:#0c1310; --card:#131c16; --ink:#e8efe8; --muted:#93a397; --line:#243029; --line-soft:#1b2620;
   }
   *{ box-sizing:border-box; }
   html{ scroll-behavior:smooth; }
-  body{ margin:0; background:var(--bg); color:var(--fg);
-    font:17px/1.6 system-ui,-apple-system,Segoe UI,Roboto,sans-serif; }
-  a{ color:var(--accent); }
-  .wrap{ max-width:860px; margin:0 auto; padding:0 20px; }
-  nav{ position:sticky; top:0; background:color-mix(in srgb, var(--bg) 88%, transparent);
-    backdrop-filter:blur(8px); border-bottom:1px solid var(--line); z-index:10; }
-  nav .wrap{ display:flex; align-items:center; gap:18px; height:56px; }
-  nav b{ font-size:1.15rem; letter-spacing:-.01em; margin-right:auto; }
-  nav a{ color:var(--fg); text-decoration:none; font-size:.95rem; opacity:.8; }
-  nav a:hover{ opacity:1; color:var(--accent); }
-  nav .cta{ background:var(--accent); color:#fff; padding:7px 12px; border-radius:8px; opacity:1; }
-  @media (max-width:640px){ nav a.hideable{ display:none; } }
-  section{ padding:56px 0; border-bottom:1px solid var(--line); }
-  h1{ font-size:2.4rem; line-height:1.1; letter-spacing:-.02em; margin:.2em 0; }
-  h2{ font-size:1.5rem; letter-spacing:-.01em; margin:0 0 .2em; }
-  .lede{ font-size:1.25rem; color:var(--muted); max-width:40ch; }
-  .grid{ display:grid; gap:16px; grid-template-columns:1fr 1fr; margin-top:22px; }
-  @media (max-width:640px){ .grid{ grid-template-columns:1fr; } }
-  .card{ background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px; }
-  .card h3{ margin:.1em 0 .3em; font-size:1.1rem; }
-  .card p{ margin:.2em 0 .8em; color:var(--muted); font-size:.96rem; }
-  .chip{ display:inline-block; background:var(--chip); color:var(--muted);
-    font-size:.72rem; text-transform:uppercase; letter-spacing:.04em; padding:2px 8px; border-radius:999px; }
-  .btn{ display:inline-block; background:var(--accent); color:#fff; text-decoration:none;
-    padding:10px 16px; border-radius:9px; font-weight:600; }
-  .btn.ghost{ background:transparent; color:var(--fg); border:1px solid var(--line); }
-  form.email{ display:flex; gap:8px; margin-top:20px; max-width:440px; flex-wrap:wrap; }
-  form.email input{ flex:1; min-width:180px; padding:11px; border-radius:9px;
-    border:1px solid var(--line); background:var(--card); color:var(--fg); font:inherit; }
-  .fine{ color:var(--muted); font-size:.85rem; }
-  ul.takes{ list-style:none; padding:0; }
-  ul.takes li{ padding:12px 0; border-bottom:1px solid var(--line); }
-  ul.takes b{ color:var(--fg); }
-  footer{ padding:40px 0; color:var(--muted); font-size:.9rem; }
+  body{ margin:0; background:var(--paper); color:var(--ink); font-family:var(--sans); font-size:17px; line-height:1.6; -webkit-font-smoothing:antialiased; }
+  a{ color:var(--green); }
+  .wrap{ max-width:900px; margin:0 auto; padding:0 22px; }
+
+  /* the tartan: layered stripes both axes -> green & gold plaid */
+  .tartan{
+    background-color:var(--green-deep);
+    background-image:
+      repeating-linear-gradient(90deg, rgba(0,0,0,.22) 0 3px, transparent 3px 46px),
+      repeating-linear-gradient(0deg, rgba(0,0,0,.22) 0 3px, transparent 3px 46px),
+      repeating-linear-gradient(90deg, rgba(255,255,255,.05) 0 23px, transparent 23px 46px),
+      repeating-linear-gradient(0deg, rgba(255,255,255,.05) 0 23px, transparent 23px 46px),
+      repeating-linear-gradient(90deg, transparent 0 34px, rgba(184,134,11,.85) 34px 37px, transparent 37px 46px),
+      repeating-linear-gradient(0deg, transparent 0 34px, rgba(184,134,11,.85) 34px 37px, transparent 37px 46px),
+      repeating-linear-gradient(90deg, transparent 0 10px, rgba(232,217,168,.5) 10px 11px, transparent 11px 46px),
+      repeating-linear-gradient(0deg, transparent 0 10px, rgba(232,217,168,.5) 10px 11px, transparent 11px 46px);
+  }
+
+  .topline{ height:4px; background:linear-gradient(90deg,var(--gold),var(--gold-bright),var(--gold)); }
+  nav{ position:sticky; top:0; z-index:20; background:color-mix(in srgb,var(--paper) 90%,transparent);
+    backdrop-filter:blur(10px); border-bottom:1px solid var(--line); }
+  nav .wrap{ display:flex; align-items:center; gap:20px; height:60px; }
+  .brand{ display:flex; align-items:center; gap:10px; margin-right:auto; text-decoration:none; }
+  .crest{ width:32px; height:32px; border-radius:7px; flex:none; display:grid; place-items:center;
+    color:var(--gold-bright); font-family:var(--serif); font-weight:700; font-size:1.1rem; border:1.5px solid var(--gold); background:color-mix(in srgb,var(--green) 12%,transparent); }
+  .brand .nm{ line-height:1.05; }
+  .brand .nm b{ font-family:var(--serif); font-size:1.28rem; letter-spacing:-.01em; color:var(--ink); display:block; }
+  .brand .nm span{ font-family:var(--mono); font-size:.58rem; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); }
+  nav a.link{ color:var(--ink); text-decoration:none; font-size:.94rem; opacity:.82; }
+  nav a.link:hover{ opacity:1; color:var(--green); }
+  nav .cta{ background:var(--green); color:#fff; padding:8px 14px; border-radius:8px; text-decoration:none; font-weight:600; font-size:.9rem; }
+  nav .cta:hover{ background:var(--green-deep); }
+  @media (prefers-color-scheme:dark){ nav .cta{ color:#08130c; } }
+  @media (max-width:680px){ nav a.link{ display:none; } }
+
+  section{ padding:60px 0; border-bottom:1px solid var(--line-soft); }
+  h1{ font-family:var(--serif); font-weight:600; font-size:clamp(2.2rem,5.5vw,3.3rem); line-height:1.06; letter-spacing:-.015em; margin:.15em 0; color:var(--ink); text-wrap:balance; }
+  h2{ font-family:var(--serif); font-weight:600; font-size:1.7rem; letter-spacing:-.01em; margin:0 0 .3em; color:var(--ink); }
+  .lede{ font-size:1.22rem; color:var(--muted); max-width:48ch; }
+  .eyebrow{ display:inline-block; font-family:var(--mono); font-size:.7rem; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--gold-bright); background:rgba(0,0,0,.2); border:1px solid rgba(232,217,168,.4);
+    padding:5px 12px; border-radius:999px; }
+
+  .hero{ position:relative; overflow:hidden; border-bottom:3px solid var(--gold); padding:0; }
+  .hero .band{ position:absolute; inset:0; opacity:1; }
+  .hero .scrim{ position:absolute; inset:0; background:linear-gradient(180deg, rgba(8,20,12,.62), rgba(8,20,12,.82)); }
+  .hero .inner{ position:relative; padding:72px 0 66px; }
+  .hero h1{ color:#fdfbf2; }
+  .hero .lede{ color:#e6ecdf; max-width:50ch; }
+  .btn{ display:inline-block; background:var(--green); color:#fff; text-decoration:none; padding:12px 20px; border-radius:10px; font-weight:600; border:none; font:inherit; font-weight:600; cursor:pointer; }
+  .btn:hover{ background:var(--green-deep); }
+  @media (prefers-color-scheme:dark){ .btn{ color:#08130c; } }
+  .btn.gold{ background:var(--gold); color:#1a1305; }
+  .btn.gold:hover{ background:var(--gold-bright); }
+  .btn.ghost{ background:transparent; color:var(--ink); border:1.5px solid var(--line); }
+  .btn.ghost:hover{ border-color:var(--green); color:var(--green); }
+  .hero .btn.ghost{ color:#fdfbf2; border-color:rgba(232,217,168,.5); }
+  .hero .btn.ghost:hover{ border-color:var(--gold-bright); color:var(--gold-bright); }
+  .cta-row{ margin-top:28px; display:flex; gap:12px; flex-wrap:wrap; }
+  form.email{ display:flex; gap:8px; margin-top:26px; max-width:470px; flex-wrap:wrap; }
+  form.email input{ flex:1; min-width:190px; padding:12px 13px; border-radius:10px; border:1.5px solid rgba(232,217,168,.35); background:rgba(255,255,255,.95); color:#182219; font:inherit; }
+  form.email input:focus{ outline:2px solid var(--gold-bright); outline-offset:1px; }
+  .fine{ color:#cdd6c8; font-size:.85rem; width:100%; margin-top:2px; }
+
+  .grid{ display:grid; gap:16px; grid-template-columns:1fr 1fr; margin-top:26px; }
+  @media (max-width:680px){ .grid{ grid-template-columns:1fr; } }
+  .card{ background:var(--card); border:1px solid var(--line); border-radius:14px; padding:20px 20px 20px 22px; position:relative; }
+  .card::before{ content:""; position:absolute; left:0; top:16px; bottom:16px; width:3px; border-radius:0 3px 3px 0; background:var(--gold); opacity:.8; }
+  .card h3{ font-family:var(--serif); margin:.1em 0 .35em; font-size:1.2rem; }
+  .card p{ margin:.2em 0 1em; color:var(--muted); font-size:.97rem; }
+  .chip{ display:inline-block; background:color-mix(in srgb,var(--gold) 20%,transparent); color:var(--green-deep);
+    font-family:var(--mono); font-size:.65rem; text-transform:uppercase; letter-spacing:.05em; padding:3px 9px; border-radius:999px; margin-bottom:12px; }
+  @media (prefers-color-scheme:dark){ .chip{ color:var(--gold-bright); } }
+  .btn.ghost.sm{ padding:9px 15px; font-size:.9rem; }
+
+  ul.takes{ list-style:none; padding:0; margin:24px 0 0; }
+  ul.takes li{ padding:16px 0 16px 20px; border-bottom:1px solid var(--line-soft); position:relative; }
+  ul.takes li::before{ content:""; position:absolute; left:0; top:21px; width:8px; height:8px; background:var(--gold); border-radius:2px; }
+  ul.takes b{ color:var(--ink); font-family:var(--serif); font-size:1.1rem; }
+  .about p{ max-width:62ch; }
+  .about .pull{ font-family:var(--serif); font-size:1.18rem; color:var(--ink); border-left:3px solid var(--gold); padding-left:16px; margin:18px 0; }
+
+  footer{ padding:0; }
+  footer .band{ height:8px; }
+  footer .inner{ padding:34px 0 46px; color:var(--muted); font-size:.9rem; }
+  footer a{ color:var(--green); }
 </style>
 </head>
 <body>
 
+<div class="topline"></div>
 <nav><div class="wrap">
-  <b>Mick</b>
-  <a href="#tools" class="hideable">Tools</a>
-  <a href="#notes" class="hideable">Notes</a>
-  <a href="#work" class="hideable">Work</a>
-  <a href="#books" class="hideable">Books</a>
-  <a href="#about" class="hideable">About</a>
+  <a class="brand" href="#home">
+    <span class="crest">M</span>
+    <span class="nm"><b>Mick Hume</b><span>Fair Dinkum AI</span></span>
+  </a>
+  <a href="#tools" class="link">Tools</a>
+  <a href="#notes" class="link">Notes</a>
+  <a href="#work" class="link">Work</a>
+  <a href="#books" class="link">Books</a>
+  <a href="#about" class="link">About</a>
   <a href="#email" class="cta" data-funnel="nav-email">Free email</a>
 </div></nav>
 
-<!-- HOME -->
-<section id="home"><div class="wrap">
-  <span class="chip">pro-AI, anti-hype</span>
-  <h1>Simple tools that work. No hype, nothing to sell you first.</h1>
-  <p class="lede">I make free, private tools and plain-language guides for getting genuinely good at AI and life. Try one right now, then decide if I'm worth listening to.</p>
-  <p style="margin-top:22px">
-    <a class="btn" href="https://mpacarroll.github.io/foundational-ai/tool/" data-funnel="tool-try">Try the Prompt Helper</a>
-    <a class="btn ghost" href="#tools">See all the tools</a>
-  </p>
-  <form class="email" id="email" method="post" action="REPLACE_WITH_EMAIL_PROVIDER_ENDPOINT" data-funnel="email-signup">
-    <input type="email" name="email" required placeholder="your email">
-    <button class="btn" type="submit">Get one useful thing a week</button>
-    <div class="fine">No spam. One short, useful email. Unsubscribe anytime.</div>
-  </form>
-</div></section>
+<!-- HERO / HOME -->
+<section id="home" class="hero">
+  <div class="band tartan"></div>
+  <div class="scrim"></div>
+  <div class="inner"><div class="wrap">
+    <span class="eyebrow">Pro-AI · Anti-hype</span>
+    <h1>Simple tools that work.<br>No hype, nothing to sell you first.</h1>
+    <p class="lede">I make free, private tools and plain-language guides for getting genuinely good at AI and life. Try one right now, then decide if I'm worth listening to.</p>
+    <div class="cta-row">
+      <a class="btn gold" href="https://mpacarroll.github.io/foundational-ai/tool/" data-funnel="tool-try">Try the Prompt Helper</a>
+      <a class="btn ghost" href="#tools">See all the tools</a>
+    </div>
+    <form class="email" id="email" method="post" action="REPLACE_WITH_EMAIL_PROVIDER_ENDPOINT" data-funnel="email-signup">
+      <input type="email" name="email" required placeholder="your email">
+      <button class="btn gold" type="submit">Get one useful thing a week</button>
+      <div class="fine">No spam. One short, useful email. Unsubscribe anytime.</div>
+    </form>
+  </div></div>
+</section>
 
 <!-- TOOLS -->
 <section id="tools"><div class="wrap">
@@ -93,28 +171,28 @@
   <p class="lede">All free. All run on your machine or in your browser. Nothing you type is sent anywhere.</p>
   <div class="grid">
     <div class="card">
-      <span class="chip">free · browser</span>
+      <span class="chip">free · in your browser</span>
       <h3>Prompt Helper</h3>
-      <p>Turn a plain-language task into a well-structured prompt for any AI. No install, works offline.</p>
-      <a class="btn ghost" href="https://mpacarroll.github.io/foundational-ai/tool/" data-funnel="tool-try">Open it</a>
+      <p>Tell it what you want in plain words, and it writes a clear, well-organized request you can paste into any AI. No sign-up, works offline.</p>
+      <a class="btn ghost sm" href="https://mpacarroll.github.io/foundational-ai/tool/" data-funnel="tool-try">Open it</a>
     </div>
     <div class="card">
-      <span class="chip">free · browser</span>
+      <span class="chip">free · in your browser</span>
       <h3>Keep in Touch</h3>
-      <p>The people who matter, on a rhythm. See who you're overdue to reach out to. Private, offline, no accounts.</p>
-      <a class="btn ghost" href="https://mpacarroll.github.io/ai-for-real-life/tool/" data-funnel="tool-try">Open it</a>
+      <p>The people who matter, on a rhythm. It quietly shows you who you're overdue to reach out to. Private, offline, no account.</p>
+      <a class="btn ghost sm" href="https://mpacarroll.github.io/ai-for-real-life/tool/" data-funnel="tool-try">Open it</a>
     </div>
     <div class="card">
-      <span class="chip">free · CLI · Pro soon</span>
-      <h3>KDP Niche Radar</h3>
-      <p>Find low-competition book niches in a minute. Local and private. A hosted Pro version is on the way.</p>
-      <a class="btn ghost" href="https://github.com/mpacarroll/become-an-ai-builder" data-funnel="tool-try">Get it</a>
+      <span class="chip">free · on your computer</span>
+      <h3>Book Topic Finder</h3>
+      <p>Thinking of self-publishing a book on Amazon? This finds topics people search for but few authors have covered, so yours can actually get found. Runs privately on your own machine.</p>
+      <a class="btn ghost sm" href="https://github.com/mpacarroll/become-an-ai-builder" data-funnel="tool-try">Get it</a>
     </div>
     <div class="card">
-      <span class="chip">free · CLI · Pro soon</span>
-      <h3>Spec Grader</h3>
-      <p>Grade a spec for ambiguity before you build from it. Deterministic, offline, CI-friendly.</p>
-      <a class="btn ghost" href="https://github.com/mpacarroll/become-an-ai-builder" data-funnel="tool-try">Get it</a>
+      <span class="chip">free · on your computer</span>
+      <h3>Instruction Checker</h3>
+      <p>Before you ask AI to build something, this reads your instructions and flags anything vague or easy to misread, so you get what you actually wanted. Free, works offline.</p>
+      <a class="btn ghost sm" href="https://github.com/mpacarroll/become-an-ai-builder" data-funnel="tool-try">Get it</a>
     </div>
   </div>
 </div></section>
@@ -124,11 +202,11 @@
   <h2>Field notes</h2>
   <p class="lede">What I'm learning, built in the open. The takes are free; the receipts are attached.</p>
   <ul class="takes">
-    <li><b>Stop building a second brain.</b> The note-linking obsession is mostly procrastination that feels like progress — and AI just made the elaborate structure pointless. <span class="fine">(the argument, with the 20-minute alternative)</span></li>
-    <li><b>You don't need 14 agents. You need one good spec.</b> The bottleneck was never the AI. It's writing down what "done" means clearly enough that a machine can't misread it.</li>
-    <li><b>Keeping in touch is a system, not a personality trait.</b> Give the people you love a cadence and let something small watch the clock. Warmth on a rhythm beats grand gestures every few years.</li>
+    <li><b>Stop building a second brain.</b><br>The note-linking obsession is mostly procrastination that feels like progress, and AI just made the elaborate structure pointless. <span class="fine">(the argument, with the 20-minute alternative)</span></li>
+    <li><b>You don't need a dozen AI helpers. You need one clear request.</b><br>The bottleneck was never the AI. It's writing down what "done" means clearly enough that a machine can't misread it.</li>
+    <li><b>Keeping in touch is a system, not a personality trait.</b><br>Give the people you love a cadence and let something small watch the clock. Warmth on a rhythm beats grand gestures every few years.</li>
   </ul>
-  <p><a href="#email" data-funnel="notes-email">Get these by email →</a></p>
+  <p style="margin-top:20px"><a href="#email" data-funnel="notes-email">Get these by email →</a></p>
 </div></section>
 
 <!-- WORK WITH ME -->
@@ -137,28 +215,28 @@
   <p class="lede">The tools above are the portfolio. If you want me to do it <em>for</em> your team, here are four ways in.</p>
   <div class="grid">
     <div class="card">
-      <span class="chip">2-week sprint</span>
+      <span class="chip">2-week project</span>
       <h3>Blueprint Sprint</h3>
-      <p>A fuzzy AI idea in, a build-ready spec and a working prototype out. Fixed scope, fixed price, no hourly billing.</p>
-      <a class="btn" href="mailto:REPLACE_WITH_MICK_EMAIL?subject=Blueprint%20Sprint" data-funnel="work-inquiry">Book a sprint</a>
+      <p>A fuzzy AI idea in, a clear plan and a working first version out. Fixed scope, fixed price, no hourly billing.</p>
+      <a class="btn ghost sm" href="mailto:REPLACE_WITH_MICK_EMAIL?subject=Blueprint%20Sprint" data-funnel="work-inquiry">Book a sprint</a>
     </div>
     <div class="card">
-      <span class="chip">team bootcamp</span>
+      <span class="chip">team workshop</span>
       <h3>Ship with AI — Cohort</h3>
-      <p>A short, hands-on bootcamp that trains your product team to ship real work with AI, using specs the model can't misread.</p>
-      <a class="btn ghost" href="mailto:REPLACE_WITH_MICK_EMAIL?subject=Team%20cohort" data-funnel="work-inquiry">Bring it to my team</a>
+      <p>A short, hands-on course that trains your team to get real, reliable work out of AI instead of confident nonsense.</p>
+      <a class="btn ghost sm" href="mailto:REPLACE_WITH_MICK_EMAIL?subject=Team%20cohort" data-funnel="work-inquiry">Bring it to my team</a>
     </div>
     <div class="card">
       <span class="chip">cohort + community</span>
       <h3>The Operator's Table</h3>
-      <p>A four-week async cohort plus a private room of practitioners doing this for real. Learn the method, stay for the people.</p>
-      <a class="btn ghost" href="#email" data-funnel="work-inquiry">Join the waitlist</a>
+      <p>A four-week guided course plus a private room of people doing this for real. Learn the method, stay for the people.</p>
+      <a class="btn ghost sm" href="#email" data-funnel="work-inquiry">Join the waitlist</a>
     </div>
     <div class="card">
-      <span class="chip">fractional</span>
+      <span class="chip">part-time</span>
       <h3>Part-time AI product lead</h3>
-      <p>A senior product brain steering your AI push a few hours a week: I own the roadmap, write the specs, kill the wrong ideas early.</p>
-      <a class="btn ghost" href="mailto:REPLACE_WITH_MICK_EMAIL?subject=Fractional%20advisory" data-funnel="work-inquiry">Talk about a retainer</a>
+      <p>A senior product brain steering your AI push a few hours a week: I decide what to build, write the plan, and stop the wrong ideas early.</p>
+      <a class="btn ghost sm" href="mailto:REPLACE_WITH_MICK_EMAIL?subject=Fractional%20advisory" data-funnel="work-inquiry">Talk to me</a>
     </div>
   </div>
 </div></section>
@@ -171,30 +249,33 @@
       <span class="chip">book</span>
       <h3>The AI Practice Book</h3>
       <p>Thirty hands-on exercises to get genuinely good at working with AI. Paper, pencil, and a chatbot.</p>
-      <a class="btn ghost" href="REPLACE_WITH_BOOK_LINK" data-funnel="book-click">Get the book</a>
+      <a class="btn ghost sm" href="REPLACE_WITH_BOOK_LINK" data-funnel="book-click">Get the book</a>
     </div>
     <div class="card">
       <span class="chip">free sample</span>
       <h3>Five first exercises</h3>
       <p>A taste of the book, free. Try them today with any AI open in front of you.</p>
-      <a class="btn ghost" href="https://mpacarroll.github.io/foundational-ai/exercises/first-exercises.md" data-funnel="book-click">Read the free five</a>
+      <a class="btn ghost sm" href="https://mpacarroll.github.io/foundational-ai/exercises/first-exercises.md" data-funnel="book-click">Read the free five</a>
     </div>
   </div>
 </div></section>
 
 <!-- ABOUT -->
-<section id="about"><div class="wrap">
+<section id="about" class="about"><div class="wrap">
   <h2>Who's Mick</h2>
-  <p>I'm Mick. I build small tools that work and write about doing more with less — using AI, without the hype. Everything on this page is something I actually made and use.</p>
-  <p>My whole thing is <b>proof over hype</b>. I don't have a course to sell you or a résumé to wave around. I have working tools you can try right now, the method I built them with out in the open, and opinions I'll back with receipts. If the tools are good, that's the credential. If they're not, no bio would fix it.</p>
-  <p>Pro-AI, anti-nonsense, on your side — against the people selling you complexity, and beside you when it all feels like too much.</p>
-  <p><a href="#email" data-funnel="about-email">Get the weekly email →</a></p>
+  <p>I'm Mick Hume. I build small tools that work and write about doing more with less, using AI, without the hype. Everything on this page is something I actually made and use.</p>
+  <p class="pull">My whole thing is proof over hype. I don't have a course to sell you or a résumé to wave around. I have working tools you can try right now, the method I built them with out in the open, and opinions I'll back with receipts.</p>
+  <p>If the tools are good, that's the credential. If they're not, no bio would fix it. Pro-AI, anti-nonsense, on your side, against the people selling you complexity and beside you when it all feels like too much.</p>
+  <p style="margin-top:18px"><a href="#email" data-funnel="about-email">Get the weekly email →</a></p>
 </div></section>
 
-<footer><div class="wrap">
-  Made by Mick. The tools are free and stay that way. ·
-  <a href="https://github.com/mpacarroll/become-an-ai-builder">Built in the open</a>
-</div></footer>
+<footer>
+  <div class="band tartan"></div>
+  <div class="inner"><div class="wrap">
+    Made by Mick Hume. The tools are free and stay that way. ·
+    <a href="https://github.com/mpacarroll/become-an-ai-builder">Built in the open</a>
+  </div></div>
+</footer>
 
 </body>
 </html>
