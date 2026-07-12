@@ -125,6 +125,13 @@
   @media (prefers-color-scheme:dark){ .chip{ color:var(--gold-bright); } }
   .btn.ghost.sm{ padding:9px 15px; font-size:.9rem; }
 
+  .group-label{ font-family:var(--mono); font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--green);
+    margin:38px 0 4px; display:flex; align-items:center; gap:10px; font-weight:700; }
+  @media (prefers-color-scheme:dark){ .group-label{ color:var(--gold-bright); } }
+  .group-label::before{ content:""; width:16px; height:3px; border-radius:2px; background:var(--gold); }
+  .group-note{ color:var(--muted); font-size:.96rem; max-width:58ch; margin:2px 0 0; }
+  .group-note b{ color:var(--ink); }
+
   ul.takes{ list-style:none; padding:0; margin:24px 0 0; }
   ul.takes li{ padding:16px 0 16px 20px; border-bottom:1px solid var(--line-soft); position:relative; }
   ul.takes li::before{ content:""; position:absolute; left:0; top:21px; width:8px; height:8px; background:var(--gold); border-radius:2px; }
@@ -176,30 +183,38 @@
   <!-- TOOLS -->
   <section id="tools"><div class="wrap">
     <h2>The tools</h2>
-    <p class="lede">All free. All run on your machine or in your browser. Nothing you type is sent anywhere.</p>
+    <p class="lede">Wherever you're starting from. The first two need no setup and no experience: if you can use a website, you can use them.</p>
+
+    <p class="group-label">Start here · for everyone, right in your browser</p>
+    <p class="group-note">Brand new to AI, or just want less hassle in daily life? These two. No account, no install, nothing to learn first.</p>
     <div class="grid">
       <div class="card">
-        <span class="chip">free · in your browser</span>
+        <span class="chip">new to AI · start here</span>
         <h3>Prompt Helper</h3>
         <p>Tell it what you want in plain words, and it writes a clear, well-organized request you can paste into any AI. No sign-up, works offline.</p>
         <a class="btn ghost sm" href="https://mpacarroll.github.io/foundational-ai/tool/" data-funnel="tool-try">Open it</a>
       </div>
       <div class="card">
-        <span class="chip">free · in your browser</span>
+        <span class="chip">everyday life</span>
         <h3>Keep in Touch</h3>
         <p>The people who matter, on a rhythm. It quietly shows you who you're overdue to reach out to. Private, offline, no account.</p>
         <a class="btn ghost sm" href="https://mpacarroll.github.io/ai-for-real-life/tool/" data-funnel="tool-try">Open it</a>
       </div>
+    </div>
+
+    <p class="group-label">If you work in tech · a little setup required</p>
+    <p class="group-note">These two are small command-line tools for people who build things. <b>If "command line" didn't mean much to you, the two above are your speed, and that's perfectly fine.</b></p>
+    <div class="grid">
       <div class="card">
-        <span class="chip">free · on your computer</span>
+        <span class="chip">for builders · command line</span>
         <h3>Book Topic Finder</h3>
         <p>Thinking of self-publishing a book on Amazon? This finds topics people search for but few authors have covered, so yours can actually get found. Runs privately on your own machine.</p>
         <a class="btn ghost sm" href="https://github.com/mpacarroll/become-an-ai-builder" data-funnel="tool-try">Get it</a>
       </div>
       <div class="card">
-        <span class="chip">free · on your computer</span>
+        <span class="chip">for builders · command line</span>
         <h3>Instruction Checker</h3>
-        <p>Before you ask AI to build something, this reads your instructions and flags anything vague or easy to misread, so you get what you actually wanted. Free, works offline.</p>
+        <p>Before you have AI build software, this reads your build instructions and flags anything vague or easy to misread, so you get what you actually wanted. Free, works offline.</p>
         <a class="btn ghost sm" href="https://github.com/mpacarroll/become-an-ai-builder" data-funnel="tool-try">Get it</a>
       </div>
     </div>
