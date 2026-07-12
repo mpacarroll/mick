@@ -312,5 +312,23 @@
   <div class="goldrule"></div>
 </div>
 
+<script>
+  /* Until the email endpoint is wired (see SETUP.md), keep the signup from 404-ing.
+     This guard auto-disables the moment a real action URL replaces the placeholder. */
+  (function(){
+    var f = document.getElementById('email');
+    if (f && /REPLACE_WITH/.test(f.getAttribute('action') || '')) {
+      f.addEventListener('submit', function(e){
+        e.preventDefault();
+        if (f.querySelector('.pending-note')) return;
+        var n = document.createElement('div');
+        n.className = 'fine pending-note';
+        n.textContent = 'The weekly email opens shortly. Thanks for the interest, check back soon.';
+        f.appendChild(n);
+      });
+    }
+  })();
+</script>
+
 </body>
 </html>
