@@ -123,7 +123,7 @@
   .chip{ display:inline-block; background:color-mix(in srgb,var(--gold) 18%,transparent); color:var(--gold);
     font-family:var(--mono); font-size:.65rem; text-transform:uppercase; letter-spacing:.05em; padding:3px 9px; border-radius:999px; margin-bottom:12px; }
   @media (prefers-color-scheme:dark){ .chip{ color:var(--gold-bright); } }
-  .btn.ghost.sm{ padding:9px 15px; font-size:.9rem; }
+  .btn.sm{ padding:9px 15px; font-size:.9rem; }
 
   .group-label{ font-family:var(--mono); font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--green);
     margin:38px 0 4px; display:flex; align-items:center; gap:10px; font-weight:700; }
@@ -131,6 +131,25 @@
   .group-label::before{ content:""; width:16px; height:3px; border-radius:2px; background:var(--gold); }
   .group-note{ color:var(--muted); font-size:.96rem; max-width:58ch; margin:2px 0 0; }
   .group-note b{ color:var(--ink); }
+
+  /* trust strip under the hero CTA */
+  .trust{ margin-top:20px; display:flex; flex-wrap:wrap; gap:8px 18px; align-items:center; }
+  .trust span{ font-family:var(--mono); font-size:.72rem; letter-spacing:.04em; color:var(--muted); display:flex; align-items:center; gap:7px; }
+  .trust span::before{ content:""; width:6px; height:6px; border-radius:50%; background:var(--gold); flex:none; }
+
+  /* "where should you start?" path chooser */
+  #start{ scroll-margin-top:10px; background:color-mix(in srgb,var(--green) 5%,var(--paper)); }
+  [id]{ scroll-margin-top:12px; }
+  .paths{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:24px; }
+  @media (max-width:720px){ .paths{ grid-template-columns:1fr; } }
+  .path{ background:var(--card); border:1px solid var(--line); border-top:3px solid var(--gold); border-radius:14px; padding:20px; display:flex; flex-direction:column; }
+  .path .who{ font-family:var(--mono); font-size:.64rem; letter-spacing:.1em; text-transform:uppercase; color:var(--green); font-weight:700; }
+  @media (prefers-color-scheme:dark){ .path .who{ color:var(--gold-bright); } }
+  .path h3{ font-family:var(--serif); font-size:1.16rem; margin:8px 0 7px; color:var(--ink); line-height:1.2; }
+  .path p{ color:var(--muted); font-size:.94rem; margin:0 0 16px; flex:1; }
+  .path a.go{ font-weight:600; color:var(--green); text-decoration:none; font-size:.95rem; }
+  .path a.go:hover{ text-decoration:underline; }
+  @media (prefers-color-scheme:dark){ .path a.go{ color:var(--gold-bright); } }
 
   ul.takes{ list-style:none; padding:0; margin:24px 0 0; }
   ul.takes li{ padding:16px 0 16px 20px; border-bottom:1px solid var(--line-soft); position:relative; }
@@ -154,7 +173,7 @@
       <span class="crest">M</span>
       <span class="nm"><b>Mick Hume</b><span>Fair Dinkum AI</span></span>
     </a>
-    <a href="#tools" class="link">Tools</a>
+    <a href="#start" class="link">Start</a>
     <a href="#notes" class="link">Notes</a>
     <a href="#work" class="link">Work</a>
     <a href="#books" class="link">Books</a>
@@ -167,11 +186,12 @@
     <div class="inner"><div class="wrap">
       <span class="eyebrow">Pro-AI · Anti-hype</span>
       <h1>Simple tools that work.<br>No hype, nothing to sell you first.</h1>
-      <p class="lede">I make free, private tools and plain-language guides for getting genuinely good at AI and life. Try one right now, then decide if I'm worth listening to.</p>
+      <p class="lede">Whether you have never touched AI or you build with it every day, there's a door here for you. Free tools, plain-language guides, and nothing to sell you until you decide I'm worth it.</p>
       <div class="cta-row">
-        <a class="btn gold" href="https://mpacarroll.github.io/foundational-ai/tool/" data-funnel="tool-try">Try the Prompt Helper</a>
-        <a class="btn ghost" href="#tools">See all the tools</a>
+        <a class="btn gold" href="#start" data-funnel="tool-try">Find where to start</a>
+        <a class="btn ghost" href="https://mpacarroll.github.io/foundational-ai/tool/" data-funnel="tool-try">Try a tool now</a>
       </div>
+      <div class="trust"><span>Free</span><span>No account</span><span>Nothing to sell you first</span></div>
       <form class="email" id="email" method="post" action="REPLACE_WITH_EMAIL_PROVIDER_ENDPOINT" data-funnel="email-signup">
         <input type="email" name="email" required placeholder="your email">
         <button class="btn" type="submit">Get one useful thing a week</button>
@@ -181,41 +201,27 @@
   </section>
 
   <!-- TOOLS -->
-  <section id="tools"><div class="wrap">
-    <h2>The tools</h2>
-    <p class="lede">Wherever you're starting from. The first two need no setup and no experience: if you can use a website, you can use them.</p>
-
-    <p class="group-label">Start here · for everyone, right in your browser</p>
-    <p class="group-note">Brand new to AI, or just want less hassle in daily life? These two. No account, no install, nothing to learn first.</p>
-    <div class="grid">
-      <div class="card">
-        <span class="chip">new to AI · start here</span>
-        <h3>Prompt Helper</h3>
-        <p>Tell it what you want in plain words, and it writes a clear, well-organized request you can paste into any AI. No sign-up, works offline.</p>
-        <a class="btn ghost sm" href="https://mpacarroll.github.io/foundational-ai/tool/" data-funnel="tool-try">Open it</a>
+  <section id="start"><div class="wrap">
+    <h2>Start where you are</h2>
+    <p class="lede">Three doors, depending on where you're at with all this. Pick the one that sounds like you. Everything here is free to try.</p>
+    <div class="paths">
+      <div class="path">
+        <span class="who">New to AI · start here</span>
+        <h3>It feels like everyone gets this but me</h3>
+        <p>Barely used AI, or it feels intimidating? Start with the Prompt Helper: tell it what you want in plain words, and it writes the request for you. No account, no jargon.</p>
+        <a class="btn gold sm" href="https://mpacarroll.github.io/foundational-ai/tool/" data-funnel="tool-try">Open the Prompt Helper</a>
       </div>
-      <div class="card">
-        <span class="chip">everyday life</span>
-        <h3>Keep in Touch</h3>
-        <p>The people who matter, on a rhythm. It quietly shows you who you're overdue to reach out to. Private, offline, no account.</p>
-        <a class="btn ghost sm" href="https://mpacarroll.github.io/ai-for-real-life/tool/" data-funnel="tool-try">Open it</a>
+      <div class="path">
+        <span class="who">Everyday life</span>
+        <h3>I just want less hassle day to day</h3>
+        <p>Small wins at home and work. Keep in Touch quietly shows you who you're overdue to reach out to, so you stop losing people to a busy life. Private and offline.</p>
+        <a class="btn gold sm" href="https://mpacarroll.github.io/ai-for-real-life/tool/" data-funnel="tool-try">Open Keep in Touch</a>
       </div>
-    </div>
-
-    <p class="group-label">If you work in tech · a little setup required</p>
-    <p class="group-note">These two are small command-line tools for people who build things. <b>If "command line" didn't mean much to you, the two above are your speed, and that's perfectly fine.</b></p>
-    <div class="grid">
-      <div class="card">
-        <span class="chip">for builders · command line</span>
-        <h3>Book Topic Finder</h3>
-        <p>Thinking of self-publishing a book on Amazon? This finds topics people search for but few authors have covered, so yours can actually get found. Runs privately on your own machine.</p>
-        <a class="btn ghost sm" href="https://github.com/mpacarroll/become-an-ai-builder" data-funnel="tool-try">Get it</a>
-      </div>
-      <div class="card">
-        <span class="chip">for builders · command line</span>
-        <h3>Instruction Checker</h3>
-        <p>Before you have AI build software, this reads your build instructions and flags anything vague or easy to misread, so you get what you actually wanted. Free, works offline.</p>
-        <a class="btn ghost sm" href="https://github.com/mpacarroll/become-an-ai-builder" data-funnel="tool-try">Get it</a>
+      <div class="path" id="build">
+        <span class="who">If you build · work in tech</span>
+        <h3>I write code and want sharper tools</h3>
+        <p>You're comfortable at a command line. Here's the spec-driven method I build with, in the open, plus the tools behind it, like the Instruction Checker that catches vague build instructions before AI runs with them.</p>
+        <a class="btn ghost sm" href="https://github.com/mpacarroll/become-an-ai-builder" data-funnel="tool-try">See the builder tools</a>
       </div>
     </div>
   </div></section>
@@ -266,7 +272,7 @@
 
   <!-- BOOKS -->
   <section id="books"><div class="wrap">
-    <h2>Books &amp; things</h2>
+    <h2>Books &amp; publishing</h2>
     <div class="grid">
       <div class="card">
         <span class="chip">book</span>
@@ -279,6 +285,12 @@
         <h3>Five first exercises</h3>
         <p>A taste of the book, free. Try them today with any AI open in front of you.</p>
         <a class="btn ghost sm" href="https://mpacarroll.github.io/foundational-ai/exercises/first-exercises.md" data-funnel="book-click">Read the free five</a>
+      </div>
+      <div class="card">
+        <span class="chip">for writers · a little setup</span>
+        <h3>Book Topic Finder</h3>
+        <p>Want to write one yourself? This finds book topics people search for but few authors have covered, so yours can actually get found. A small tool you run on your own computer.</p>
+        <a class="btn ghost sm" href="https://github.com/mpacarroll/become-an-ai-builder" data-funnel="book-click">Get it</a>
       </div>
     </div>
   </div></section>
