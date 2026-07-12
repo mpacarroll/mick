@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mick — simple tools that work, no hype</title>
+<meta name="description" content="Free, private tools and plain-language guides for getting genuinely good at AI and life. Built in the open by Mick.">
+<!--
+  ANALYTICS PLACEHOLDER (cookieless, hub-only — the free tools stay no-tracking).
+  Add ONE of these in <head> after you pick a provider (see SETUP.md):
+    <script defer data-domain="YOURDOMAIN" src="https://plausible.io/js/script.js"></script>
+    or GoatCounter / Cloudflare Web Analytics snippet.
+  Funnel events are marked with data-funnel="..." on the CTAs below; wire them per SETUP.md.
+-->
+<style>
+  :root{
+    --bg:#fbfbfa; --fg:#1a1a1a; --muted:#5a5a5a; --line:#e4e4e1;
+    --accent:#c8641e; --card:#ffffff; --chip:#f0efec;
+    color-scheme: light dark;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#141416; --fg:#ececec; --muted:#a5a5a5; --line:#2c2c30; --accent:#ffb066; --card:#1c1c1f; --chip:#26262a; }
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{ margin:0; background:var(--bg); color:var(--fg);
+    font:17px/1.6 system-ui,-apple-system,Segoe UI,Roboto,sans-serif; }
+  a{ color:var(--accent); }
+  .wrap{ max-width:860px; margin:0 auto; padding:0 20px; }
+  nav{ position:sticky; top:0; background:color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter:blur(8px); border-bottom:1px solid var(--line); z-index:10; }
+  nav .wrap{ display:flex; align-items:center; gap:18px; height:56px; }
+  nav b{ font-size:1.15rem; letter-spacing:-.01em; margin-right:auto; }
+  nav a{ color:var(--fg); text-decoration:none; font-size:.95rem; opacity:.8; }
+  nav a:hover{ opacity:1; color:var(--accent); }
+  nav .cta{ background:var(--accent); color:#fff; padding:7px 12px; border-radius:8px; opacity:1; }
+  @media (max-width:640px){ nav a.hideable{ display:none; } }
+  section{ padding:56px 0; border-bottom:1px solid var(--line); }
+  h1{ font-size:2.4rem; line-height:1.1; letter-spacing:-.02em; margin:.2em 0; }
+  h2{ font-size:1.5rem; letter-spacing:-.01em; margin:0 0 .2em; }
+  .lede{ font-size:1.25rem; color:var(--muted); max-width:40ch; }
+  .grid{ display:grid; gap:16px; grid-template-columns:1fr 1fr; margin-top:22px; }
+  @media (max-width:640px){ .grid{ grid-template-columns:1fr; } }
+  .card{ background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px; }
+  .card h3{ margin:.1em 0 .3em; font-size:1.1rem; }
+  .card p{ margin:.2em 0 .8em; color:var(--muted); font-size:.96rem; }
+  .chip{ display:inline-block; background:var(--chip); color:var(--muted);
+    font-size:.72rem; text-transform:uppercase; letter-spacing:.04em; padding:2px 8px; border-radius:999px; }
+  .btn{ display:inline-block; background:var(--accent); color:#fff; text-decoration:none;
+    padding:10px 16px; border-radius:9px; font-weight:600; }
+  .btn.ghost{ background:transparent; color:var(--fg); border:1px solid var(--line); }
+  form.email{ display:flex; gap:8px; margin-top:20px; max-width:440px; flex-wrap:wrap; }
+  form.email input{ flex:1; min-width:180px; padding:11px; border-radius:9px;
+    border:1px solid var(--line); background:var(--card); color:var(--fg); font:inherit; }
+  .fine{ color:var(--muted); font-size:.85rem; }
+  ul.takes{ list-style:none; padding:0; }
+  ul.takes li{ padding:12px 0; border-bottom:1px solid var(--line); }
+  ul.takes b{ color:var(--fg); }
+  footer{ padding:40px 0; color:var(--muted); font-size:.9rem; }
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <b>Mick</b>
+  <a href="#tools" class="hideable">Tools</a>
+  <a href="#notes" class="hideable">Notes</a>
+  <a href="#work" class="hideable">Work</a>
+  <a href="#books" class="hideable">Books</a>
+  <a href="#about" class="hideable">About</a>
+  <a href="#email" class="cta" data-funnel="nav-email">Free email</a>
+</div></nav>
+
+<!-- HOME -->
+<section id="home"><div class="wrap">
+  <span class="chip">pro-AI, anti-hype</span>
+  <h1>Simple tools that work. No hype, nothing to sell you first.</h1>
+  <p class="lede">I make free, private tools and plain-language guides for getting genuinely good at AI and life. Try one right now, then decide if I'm worth listening to.</p>
+  <p style="margin-top:22px">
+    <a class="btn" href="https://mpacarroll.github.io/ai-for-everyone/tool/" data-funnel="tool-try">Try the Prompt Helper</a>
+    <a class="btn ghost" href="#tools">See all the tools</a>
+  </p>
+  <form class="email" id="email" method="post" action="REPLACE_WITH_EMAIL_PROVIDER_ENDPOINT" data-funnel="email-signup">
+    <input type="email" name="email" required placeholder="your email">
+    <button class="btn" type="submit">Get one useful thing a week</button>
+    <div class="fine">No spam. One short, useful email. Unsubscribe anytime.</div>
+  </form>
+</div></section>
+
+<!-- TOOLS -->
+<section id="tools"><div class="wrap">
+  <h2>The tools</h2>
+  <p class="lede">All free. All run on your machine or in your browser. Nothing you type is sent anywhere.</p>
+  <div class="grid">
+    <div class="card">
+      <span class="chip">free · browser</span>
+      <h3>Prompt Helper</h3>
+      <p>Turn a plain-language task into a well-structured prompt for any AI. No install, works offline.</p>
+      <a class="btn ghost" href="https://mpacarroll.github.io/ai-for-everyone/tool/" data-funnel="tool-try">Open it</a>
+    </div>
+    <div class="card">
+      <span class="chip">free · browser</span>
+      <h3>Keep in Touch</h3>
+      <p>The people who matter, on a rhythm. See who you're overdue to reach out to. Private, offline, no accounts.</p>
+      <a class="btn ghost" href="https://mpacarroll.github.io/life-systems/tool/" data-funnel="tool-try">Open it</a>
+    </div>
+    <div class="card">
+      <span class="chip">free · CLI · Pro soon</span>
+      <h3>KDP Niche Radar</h3>
+      <p>Find low-competition book niches in a minute. Local and private. A hosted Pro version is on the way.</p>
+      <a class="btn ghost" href="https://github.com/mpacarroll/spec-driven-in-the-open" data-funnel="tool-try">Get it</a>
+    </div>
+    <div class="card">
+      <span class="chip">free · CLI · Pro soon</span>
+      <h3>Spec Grader</h3>
+      <p>Grade a spec for ambiguity before you build from it. Deterministic, offline, CI-friendly.</p>
+      <a class="btn ghost" href="https://github.com/mpacarroll/spec-driven-in-the-open" data-funnel="tool-try">Get it</a>
+    </div>
+  </div>
+</div></section>
+
+<!-- FIELD NOTES -->
+<section id="notes"><div class="wrap">
+  <h2>Field notes</h2>
+  <p class="lede">What I'm learning, built in the open. The takes are free; the receipts are attached.</p>
+  <ul class="takes">
+    <li><b>Stop building a second brain.</b> The note-linking obsession is mostly procrastination that feels like progress — and AI just made the elaborate structure pointless. <span class="fine">(the argument, with the 20-minute alternative)</span></li>
+    <li><b>You don't need 14 agents. You need one good spec.</b> The bottleneck was never the AI. It's writing down what "done" means clearly enough that a machine can't misread it.</li>
+    <li><b>Keeping in touch is a system, not a personality trait.</b> Give the people you love a cadence and let something small watch the clock. Warmth on a rhythm beats grand gestures every few years.</li>
+  </ul>
+  <p><a href="#email" data-funnel="notes-email">Get these by email →</a></p>
+</div></section>
+
+<!-- WORK WITH ME -->
+<section id="work"><div class="wrap">
+  <h2>Work with me</h2>
+  <p class="lede">The tools above are the portfolio. If you want me to do it <em>for</em> your team, here are four ways in.</p>
+  <div class="grid">
+    <div class="card">
+      <span class="chip">2-week sprint</span>
+      <h3>Blueprint Sprint</h3>
+      <p>A fuzzy AI idea in, a build-ready spec and a working prototype out. Fixed scope, fixed price, no hourly billing.</p>
+      <a class="btn" href="mailto:REPLACE_WITH_MICK_EMAIL?subject=Blueprint%20Sprint" data-funnel="work-inquiry">Book a sprint</a>
+    </div>
+    <div class="card">
+      <span class="chip">team bootcamp</span>
+      <h3>Ship with AI — Cohort</h3>
+      <p>A short, hands-on bootcamp that trains your product team to ship real work with AI, using specs the model can't misread.</p>
+      <a class="btn ghost" href="mailto:REPLACE_WITH_MICK_EMAIL?subject=Team%20cohort" data-funnel="work-inquiry">Bring it to my team</a>
+    </div>
+    <div class="card">
+      <span class="chip">cohort + community</span>
+      <h3>The Operator's Table</h3>
+      <p>A four-week async cohort plus a private room of practitioners doing this for real. Learn the method, stay for the people.</p>
+      <a class="btn ghost" href="#email" data-funnel="work-inquiry">Join the waitlist</a>
+    </div>
+    <div class="card">
+      <span class="chip">fractional</span>
+      <h3>Part-time AI product lead</h3>
+      <p>A senior product brain steering your AI push a few hours a week: I own the roadmap, write the specs, kill the wrong ideas early.</p>
+      <a class="btn ghost" href="mailto:REPLACE_WITH_MICK_EMAIL?subject=Fractional%20advisory" data-funnel="work-inquiry">Talk about a retainer</a>
+    </div>
+  </div>
+</div></section>
+
+<!-- BOOKS -->
+<section id="books"><div class="wrap">
+  <h2>Books &amp; things</h2>
+  <div class="grid">
+    <div class="card">
+      <span class="chip">book</span>
+      <h3>The AI Practice Book</h3>
+      <p>Thirty hands-on exercises to get genuinely good at working with AI. Paper, pencil, and a chatbot.</p>
+      <a class="btn ghost" href="REPLACE_WITH_BOOK_LINK" data-funnel="book-click">Get the book</a>
+    </div>
+    <div class="card">
+      <span class="chip">free sample</span>
+      <h3>Five first exercises</h3>
+      <p>A taste of the book, free. Try them today with any AI open in front of you.</p>
+      <a class="btn ghost" href="https://mpacarroll.github.io/ai-for-everyone/exercises/first-exercises.md" data-funnel="book-click">Read the free five</a>
+    </div>
+  </div>
+</div></section>
+
+<!-- ABOUT -->
+<section id="about"><div class="wrap">
+  <h2>Who's Mick</h2>
+  <p>I'm Mick. I build small tools that work and write about doing more with less — using AI, without the hype. Everything on this page is something I actually made and use.</p>
+  <p>My whole thing is <b>proof over hype</b>. I don't have a course to sell you or a résumé to wave around. I have working tools you can try right now, the method I built them with out in the open, and opinions I'll back with receipts. If the tools are good, that's the credential. If they're not, no bio would fix it.</p>
+  <p>Pro-AI, anti-nonsense, on your side — against the people selling you complexity, and beside you when it all feels like too much.</p>
+  <p><a href="#email" data-funnel="about-email">Get the weekly email →</a></p>
+</div></section>
+
+<footer><div class="wrap">
+  Made by Mick. The tools are free and stay that way. ·
+  <a href="https://github.com/mpacarroll/spec-driven-in-the-open">Built in the open</a>
+</div></footer>
+
+</body>
+</html>
