@@ -189,7 +189,7 @@
         <a class="btn ghost" href="https://mpacarroll.github.io/ai-foundations/tool/" data-funnel="tool-try">Try a tool now</a>
       </div>
       <div class="trust"><span>Free</span><span>No account</span><span>Nothing to sell you first</span></div>
-      <form class="email" id="email" method="post" action="REPLACE_WITH_EMAIL_PROVIDER_ENDPOINT" data-funnel="email-signup">
+      <form class="email" id="email" method="post" action="https://join.micksfairdinkumai.com/subscribe" data-funnel="email-signup">
         <input type="email" name="email" required placeholder="your email">
         <button class="btn" type="submit">Get one useful thing a week</button>
         <div class="fine">No spam. One short, useful email. Unsubscribe anytime.</div>
@@ -325,20 +325,26 @@
 </div>
 
 <script>
-  /* Until the email endpoint is wired (see SETUP.md), keep the signup from 404-ing.
-     This guard auto-disables the moment a real action URL replaces the placeholder. */
+  /* Signup -> Cloudflare Worker + D1 (join.micksfairdinkumai.com). Submits via
+     fetch so the page never navigates away; shows an inline confirmation. */
   (function(){
     var f = document.getElementById('email');
-    if (f && /REPLACE_WITH/.test(f.getAttribute('action') || '')) {
-      f.addEventListener('submit', function(e){
-        e.preventDefault();
-        if (f.querySelector('.pending-note')) return;
-        var n = document.createElement('div');
-        n.className = 'fine pending-note';
-        n.textContent = 'The weekly email opens shortly. Thanks for the interest, check back soon.';
-        f.appendChild(n);
-      });
-    }
+    if (!f) return;
+    f.addEventListener('submit', function(e){
+      e.preventDefault();
+      var input = f.querySelector('input[type=email]');
+      var note = f.querySelector('.pending-note');
+      if (!note) { note = document.createElement('div'); note.className = 'fine pending-note'; f.appendChild(note); }
+      note.textContent = 'Signing you up…';
+      fetch(f.getAttribute('action'), {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ email: (input && input.value) || '', source: 'hub' })
+      }).then(function(r){ return r.json(); }).then(function(d){
+        if (d && d.ok) { f.reset(); note.textContent = "You're in — thanks for trusting me with your inbox."; }
+        else { note.textContent = (d && d.error) || "That didn't go through — mind trying again?"; }
+      }).catch(function(){ note.textContent = 'Network hiccup — try again in a sec.'; });
+    });
   })();
 </script>
 
